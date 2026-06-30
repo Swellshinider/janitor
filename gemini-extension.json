@@ -1,0 +1,6 @@
+{
+  "name": "janitor",
+  "version": "0.1.0",
+  "description": "Behavior-preserving codebase cleanup: dead code removal, file splitting, and deduplication without public API changes.",
+  "contextFileName": "integrations/gemini/AGENTS.md"
+}

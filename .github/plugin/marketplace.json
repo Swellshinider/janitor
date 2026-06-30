@@ -1,0 +1,18 @@
+{
+  "name": "janitor",
+  "description": "Behavior-preserving codebase cleanup for AI agents.",
+  "owner": {
+    "name": "Swellshinider",
+    "url": "https://github.com/Swellshinider"
+  },
+  "plugins": [
+    {
+      "name": "janitor",
+      "description": "Remove dead code, split oversized files, and merge duplicates without changing behavior.",
+      "source": "./",
+      "category": "productivity",
+      "tags": ["cleanup", "refactor", "dead-code", "deduplication"],
+      "skills": "skills/"
+    }
+  ]
+}

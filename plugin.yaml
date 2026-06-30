@@ -1,0 +1,6 @@
+name: janitor
+version: 0.1.0
+description: Behavior-preserving codebase cleanup for AI agents.
+author: Swellshinider
+provides_skills:
+  - janitor

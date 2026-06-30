@@ -1,32 +1,25 @@
 # Janitor
 
-Janitor is the cleaner for your codebase. AI wrote too much trash? Files and
-classes insanely big? Dead code everywhere? Janitor cleans it up, optimizing
-and refactoring **without changing behavior**.
+Janitor is a behavior-preserving cleanup skill for AI agents. It helps remove
+dead code, split oversized files or classes, and deduplicate repeated logic
+without changing behavior.
 
-Janitor is an AI skill. It guides an agent through three behavior-preserving
-operations:
+The contract is narrow on purpose: tests run before and after each change, the
+public API stays stable, and anything that may be reached dynamically is kept
+and flagged instead of deleted on a guess.
 
-- **Dead code removal**: unused functions, imports, variables, types, files.
-- **Split oversized files or classes**: extract cohesive units, keep the public
-  surface stable with re-exports.
+Over-engineering review is out of scope. Janitor applies cleanup; it does not
+hunt complexity.
+
+## What it does
+
+- **Dead code removal**: unused functions, imports, variables, types, and files.
+- **Split oversized files or classes**: extract cohesive units while preserving
+  old import paths with re-exports.
 - **Deduplication**: merge repeated logic into one shared helper.
 
-The hard rule is **no behavior changes**. Tests run before and after every
-change, the public API stays frozen, and code that may be reached dynamically
-(reflection, DI, string dispatch) is kept and flagged, never deleted on a guess.
-
-Over-engineering review is intentionally out of scope; that belongs to a
-dedicated review pass, not janitor. Janitor applies cleanup, it does not hunt
-complexity.
-
-## How it works
-
-Assess with the detection scripts, propose a safety-ranked plan, execute one
-change at a time with verification. See
-[`skills/janitor/SKILL.md`](skills/janitor/SKILL.md) for the full skill.
-
-Detection scripts (stdlib Python, `--json` on each):
+See [`skills/janitor/SKILL.md`](skills/janitor/SKILL.md) for the full skill.
+The bundled detection scripts are stdlib Python and support `--json`:
 
 - `skills/janitor/scripts/find_oversized.py`
 - `skills/janitor/scripts/find_unused.py`
@@ -36,22 +29,59 @@ Detection scripts (stdlib Python, `--json` on each):
 
 ### Claude Code
 
-Install as a plugin:
-
-```
+```text
 /plugin marketplace add Swellshinider/janitor
 /plugin install janitor@janitor
 ```
 
-### Codex, Cursor, Copilot
-
-Pre-built bundles live in [`integrations/`](integrations). Copy the matching
-files for your tool.
-
 ### Codex
 
 ```bash
+codex plugin marketplace add Swellshinider/janitor
+codex plugin add janitor@janitor
+```
+
+Manual fallback:
+
+```bash
 cp -R integrations/codex/skills/janitor ~/.agents/skills/janitor
+```
+
+### GitHub Copilot CLI
+
+```bash
+copilot plugin marketplace add Swellshinider/janitor
+copilot plugin install janitor@janitor
+```
+
+Editor fallback:
+
+```bash
+mkdir -p .github
+cp integrations/copilot/copilot-instructions.md .github/copilot-instructions.md
+```
+
+### Gemini CLI
+
+```bash
+gemini extensions install https://github.com/Swellshinider/janitor
+```
+
+### OpenCode
+
+Copy the generated command and skill bundle into your project config:
+
+```bash
+mkdir -p .opencode/command .opencode/skills
+cp integrations/opencode/command/janitor.md .opencode/command/
+cp -R integrations/opencode/skills/janitor .opencode/skills/
+```
+
+### OpenClaw
+
+```bash
+mkdir -p ~/.openclaw/skills
+cp -R integrations/openclaw/skills/janitor ~/.openclaw/skills/
 ```
 
 ### Cursor
@@ -61,24 +91,21 @@ mkdir -p .cursor/rules
 cp integrations/cursor/rules/janitor.mdc .cursor/rules/
 ```
 
-### GitHub Copilot
-
-```bash
-cp integrations/copilot/copilot-instructions.md .github/copilot-instructions.md
-```
+Pre-built bundles for every supported tool live in
+[`integrations/`](integrations).
 
 ## Regenerate integrations
 
-The `integrations/` directory is generated from the single source
-`skills/janitor/SKILL.md`.
+`skills/janitor/SKILL.md` is the source of truth.
 
 ```bash
-python3 scripts/convert.py            # all tools
+python3 scripts/convert.py
 python3 scripts/convert.py --tool cursor --json
 ```
 
 ## Verify
 
 ```bash
-python3 examples/sample_cleanup.py    # self-check: behavior + detection
+python3 examples/sample_cleanup.py
+python3 tests/check_integrations.py
 ```

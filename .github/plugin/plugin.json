@@ -1,0 +1,14 @@
+{
+  "name": "janitor",
+  "description": "Behavior-preserving codebase cleanup: dead code removal, file splitting, and deduplication without public API changes.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Swellshinider",
+    "url": "https://github.com/Swellshinider"
+  },
+  "homepage": "https://github.com/Swellshinider/janitor",
+  "repository": "https://github.com/Swellshinider/janitor",
+  "license": "MIT",
+  "keywords": ["cleanup", "refactor", "dead-code", "deduplication", "code-quality"],
+  "skills": "skills/"
+}

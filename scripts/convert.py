@@ -2,16 +2,19 @@
 """Convert the janitor skill into per-tool integration bundles.
 
 Usage:
-    convert.py [--tool {codex,cursor,copilot,all}] [--out DIR] [--json]
+    convert.py [--tool {codex,cursor,copilot,gemini,openclaw,opencode,all}] [--out DIR] [--json]
 
 Single source: skills/janitor/SKILL.md. Output (committed) lets each tool
 install by copy only. Claude Code is not listed here: it installs janitor as a
 plugin via .claude-plugin/, which bundles skills/ directly.
 
 - codex: full skill bundle (SKILL.md + references + scripts), native SKILL.md
-  reader. Install to ~/.agents/skills/janitor.
+  reader. Install by marketplace or copy to ~/.agents/skills/janitor.
 - cursor: a .cursor/rules/ .mdc rule generated from the source.
 - copilot: a .github/copilot-instructions.md generated from the source body.
+- gemini: a context file generated from the source body.
+- openclaw: a SKILL.md package with OpenClaw-friendly frontmatter.
+- opencode: a command file plus a full skill bundle.
 
 # ponytail: frontmatter is parsed with a tiny regex, not a YAML library. That is
 # fine because we own the source and it only ever has name + description. Switch
@@ -29,8 +32,13 @@ REPO_ROOT = os.path.dirname(HERE)
 SOURCE_DIR = os.path.join(REPO_ROOT, "skills", "janitor")
 SOURCE_SKILL = os.path.join(SOURCE_DIR, "SKILL.md")
 SKILL_NAME = "janitor"
+HOMEPAGE = "https://github.com/Swellshinider/janitor"
+OPENCLAW_DESCRIPTION = (
+    "Behavior-preserving cleanup: dead code removal, file splitting, and "
+    "deduplication without public API changes."
+)
 
-TOOLS = ("codex", "cursor", "copilot")
+TOOLS = ("codex", "cursor", "copilot", "gemini", "openclaw", "opencode")
 
 
 def unquote(value):
@@ -112,6 +120,46 @@ def write_copilot(out_dir, body):
         f.write(body + "\n")
 
 
+def write_gemini(out_dir, description, body):
+    gemini = os.path.join(out_dir, "gemini")
+    os.makedirs(gemini, exist_ok=True)
+    content = "# Janitor\n\nActivation: {}\n\n{}\n".format(description, body)
+    with open(os.path.join(gemini, "AGENTS.md"), "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def write_openclaw(out_dir, body):
+    if len(OPENCLAW_DESCRIPTION) > 160:
+        raise ValueError("OpenClaw description must stay under 160 chars")
+    target = os.path.join(out_dir, "openclaw", "skills", SKILL_NAME)
+    os.makedirs(target, exist_ok=True)
+    content = (
+        "---\n"
+        "name: {name}\n"
+        "description: {description}\n"
+        "homepage: {homepage}\n"
+        "license: MIT\n"
+        "---\n"
+        "{body}\n"
+    ).format(
+        name=SKILL_NAME,
+        description=yaml_quote(OPENCLAW_DESCRIPTION),
+        homepage=HOMEPAGE,
+        body=body,
+    )
+    with open(os.path.join(target, "SKILL.md"), "w", encoding="utf-8") as f:
+        f.write(content)
+
+
+def write_opencode(out_dir, description, body):
+    root = os.path.join(out_dir, "opencode")
+    commands = os.path.join(root, "command")
+    os.makedirs(commands, exist_ok=True)
+    with open(os.path.join(commands, SKILL_NAME + ".md"), "w", encoding="utf-8") as f:
+        f.write("---\ndescription: {}\n---\n\n{}\n".format(yaml_quote(description), body))
+    copy_bundle(os.path.join(root, "skills", SKILL_NAME))
+
+
 def convert(tool, out_dir, name, description, body):
     if tool == "codex":
         copy_bundle(os.path.join(out_dir, tool, "skills", SKILL_NAME))
@@ -119,6 +167,12 @@ def convert(tool, out_dir, name, description, body):
         write_cursor(out_dir, description, body)
     elif tool == "copilot":
         write_copilot(out_dir, body)
+    elif tool == "gemini":
+        write_gemini(out_dir, description, body)
+    elif tool == "openclaw":
+        write_openclaw(out_dir, body)
+    elif tool == "opencode":
+        write_opencode(out_dir, description, body)
     else:
         raise ValueError("unknown tool: " + tool)
 

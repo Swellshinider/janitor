@@ -1,0 +1,28 @@
+{
+  "name": "janitor",
+  "version": "0.1.0",
+  "description": "Behavior-preserving codebase cleanup: dead code removal, file splitting, and deduplication without public API changes.",
+  "author": {
+    "name": "Swellshinider",
+    "url": "https://github.com/Swellshinider"
+  },
+  "homepage": "https://github.com/Swellshinider/janitor",
+  "repository": "https://github.com/Swellshinider/janitor",
+  "license": "MIT",
+  "keywords": ["cleanup", "refactor", "dead-code", "deduplication", "code-quality"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Janitor",
+    "shortDescription": "Behavior-preserving cleanup",
+    "longDescription": "Remove dead code, split oversized files and merge duplicates while keeping behavior and public APIs stable.",
+    "developerName": "Swellshinider",
+    "category": "Productivity",
+    "capabilities": ["Skills"],
+    "websiteURL": "https://github.com/Swellshinider/janitor",
+    "defaultPrompt": [
+      "Use Janitor to clean up this codebase without changing behavior.",
+      "Find dead code, duplicate logic, and oversized files.",
+      "Refactor this code while keeping the public API stable."
+    ]
+  }
+}
