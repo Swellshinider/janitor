@@ -1,5 +1,7 @@
 # Changelog
 
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 All notable changes to this project are documented in this file.
 
 ## [Unreleased]
@@ -20,6 +22,3 @@ All notable changes to this project are documented in this file.
   integration bundles.
 - `examples/sample_cleanup.py`: runnable self-check.
 - MIT License (`LICENSE`).
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/2.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
