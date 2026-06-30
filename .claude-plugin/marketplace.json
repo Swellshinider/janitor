@@ -1,0 +1,36 @@
+{
+  "name": "janitor",
+  "owner": {
+    "name": "Swellshinider",
+    "url": "https://github.com/Swellshinider"
+  },
+  "description": "Janitor is a behavior-preserving codebase cleanup skill for Claude Code. It removes dead code, splits oversized files and classes, and merges duplicated logic, without changing behavior. Tests stay green and the public API stays frozen.",
+  "homepage": "https://github.com/Swellshinider/janitor",
+  "repository": "https://github.com/Swellshinider/janitor",
+  "metadata": {
+    "description": "Behavior-preserving codebase cleanup: dead code removal, splitting oversized files and classes, and deduplication. No behavior changes.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "janitor",
+      "source": ".",
+      "description": "Behavior-preserving codebase cleanup: removes dead code, splits oversized files and classes, and merges duplicated logic without changing behavior. Tests stay green, public API frozen.",
+      "version": "0.1.0",
+      "author": {
+        "name": "Swellshinider",
+        "url": "https://github.com/Swellshinider"
+      },
+      "keywords": [
+        "refactor",
+        "cleanup",
+        "dead-code",
+        "deduplication",
+        "split-files",
+        "code-quality",
+        "skill"
+      ],
+      "category": "engineering"
+    }
+  ]
+}
