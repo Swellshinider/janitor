@@ -1,29 +1,24 @@
 # Janitor
 
-Janitor is a behavior-preserving cleanup skill for AI agents. It helps remove
-dead code, split oversized files or classes, and deduplicate repeated logic
-without changing behavior.
+Janitor is the cleaner for your codebase. AI wrote too much trash? Files and
+classes insanely big? Dead code everywhere? Janitor cleans it up, optimizing
+and refactoring **without changing behavior**.
 
-The contract is narrow on purpose: tests run before and after each change, the
-public API stays stable, and anything that may be reached dynamically is kept
-and flagged instead of deleted on a guess.
+It is built for the boring cleanup work that piles up after fast development:
+removing unused code, splitting files that became impossible to read, and
+deduplicating repeated logic so the next change is smaller.
 
-Over-engineering review is out of scope. Janitor applies cleanup; it does not
-hunt complexity.
+Janitor is intentionally conservative. It runs checks before and after cleanup,
+keeps public behavior stable, and flags risky code instead of guessing.
 
-## What it does
+## What Janitor cleans
 
-- **Dead code removal**: unused functions, imports, variables, types, and files.
-- **Split oversized files or classes**: extract cohesive units while preserving
-  old import paths with re-exports.
-- **Deduplication**: merge repeated logic into one shared helper.
+- Dead imports, variables, functions, types, and files.
+- Oversized files and classes that need to be split into smaller pieces.
+- Repeated logic that should live in one place.
 
-See [`skills/janitor/SKILL.md`](skills/janitor/SKILL.md) for the full skill.
-The bundled detection scripts are stdlib Python and support `--json`:
-
-- `skills/janitor/scripts/find_oversized.py`
-- `skills/janitor/scripts/find_unused.py`
-- `skills/janitor/scripts/find_duplicates.py`
+It does not do broad architecture rewrites or taste-based reviews. Janitor is
+for cleanup that can be checked.
 
 ## Install
 
@@ -94,16 +89,16 @@ cp integrations/cursor/rules/janitor.mdc .cursor/rules/
 Pre-built bundles for every supported tool live in
 [`integrations/`](integrations).
 
-## Regenerate integrations
+## For maintainers
 
-`skills/janitor/SKILL.md` is the source of truth.
+`skills/janitor/SKILL.md` is the source of truth for generated integrations.
 
 ```bash
 python3 scripts/convert.py
 python3 scripts/convert.py --tool cursor --json
 ```
 
-## Verify
+Run the quick checks:
 
 ```bash
 python3 examples/sample_cleanup.py
