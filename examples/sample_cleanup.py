@@ -18,7 +18,7 @@ import sys
 import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-SCRIPTS = os.path.abspath(os.path.join(HERE, "..", "skills", "janitor", "scripts"))
+SCRIPTS = os.path.abspath(os.path.join(HERE, "..", "skills", "cleaner", "scripts"))
 sys.path.insert(0, SCRIPTS)
 import find_duplicates  # noqa: E402
 import find_oversized  # noqa: E402

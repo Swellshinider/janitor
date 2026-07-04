@@ -1,6 +1,6 @@
 {
   "name": "janitor",
-  "description": "Behavior-preserving codebase cleanup: removes dead code, splits oversized files and classes, and merges duplicated logic without changing behavior.",
+  "description": "Behavior-preserving codebase care: cleaner removes dead code, splits oversized files and classes, and merges duplicated logic; manager restructures files and directories.",
   "version": "0.1.0",
   "author": {
     "name": "Swellshinider",

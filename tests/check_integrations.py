@@ -46,6 +46,14 @@ def main():
     gemini = read_json("gemini-extension.json")
     assert gemini["contextFileName"] == "integrations/gemini/AGENTS.md"
 
+    # cleanup-safety.md is duplicated across the skill bundles (each ships
+    # independently); keep the two byte-identical so they cannot drift.
+    assert filecmp.cmp(
+        os.path.join(ROOT, "skills", "cleaner", "references", "cleanup-safety.md"),
+        os.path.join(ROOT, "skills", "manager", "references", "cleanup-safety.md"),
+        shallow=False,
+    ), "cleanup-safety.md differs between skills/cleaner and skills/manager"
+
     print("PASS: integrations and marketplace manifests are wired.")
 
 

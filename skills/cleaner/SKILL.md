@@ -1,8 +1,16 @@
 ---
-description: "Use when AI-generated code has bloated the repo: oversized files or classes, dead or unused code (functions, imports, variables, types, whole files), or duplicated blocks that need merging. Behavior-preserving cleanup only. Run when the user says \"clean up this code\", \"remove dead code\", \"split this file\", \"this file is too big\", \"deduplicate\", or \"refactor without changing behavior\". Not for new features, bug fixes, performance work, or over-engineering review."
+name: cleaner
+description: >
+  Use when AI-generated code has bloated the repo: oversized files or classes,
+  dead or unused code (functions, imports, variables, types, whole files), or
+  duplicated blocks that need merging. Behavior-preserving cleanup only. Run
+  when the user says "clean up this code", "remove dead code", "split this
+  file", "this file is too big", "deduplicate", or "refactor without changing
+  behavior". Not for new features, bug fixes, performance work, or
+  over-engineering review.
 ---
 
-# Janitor
+# Cleaner
 
 Behavior-preserving cleanup. Smaller files, no dead code, no duplication, same
 behavior. The test suite ends green and the public surface is unchanged. If a
@@ -85,7 +93,8 @@ Run the type checker or linter if the project has one.
 
 Out of scope. Route these elsewhere:
 
-- New features and bug fixes. Behavior must change, janitor does not.
+- New features and bug fixes. Behavior must change, the cleaner does not.
+- Structural reorganization across files and directories. Use the manager skill.
 - Performance work.
 - Over-engineering review (ponytail's lane).
 - Formatting and style. Use the project's linter or formatter.

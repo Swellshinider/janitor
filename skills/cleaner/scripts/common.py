@@ -1,4 +1,4 @@
-"""Shared helpers for janitor detector scripts."""
+"""Shared helpers for cleaner detector scripts."""
 import os
 
 SKIP_DIRS = {
