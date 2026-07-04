@@ -1,0 +1,103 @@
+---
+name: manager
+description: >
+  Use when the codebase is structurally hard to navigate: oversized files or
+  classes that should be split into cohesive modules, or a flat or misplaced
+  directory layout that should be regrouped by feature or responsibility.
+  Behavior-preserving structural refactor only: split files and move them into a
+  cleaner layout, with import rewrites and re-export shims keeping callers
+  unchanged. Run when the user says "this module is a mess", "split this giant
+  file", "reorganize these folders", "group these files by feature", or
+  "restructure this directory". Not for in-place dead-code removal or
+  deduplication (that is the cleaner skill), nor for new features, bug fixes, or
+  behavior changes.
+---
+
+# Manager
+
+Behavior-preserving structural refactor. Split oversized files into cohesive
+modules and move files into a cleaner directory layout. Tests stay green and the
+public surface is frozen: every move rewrites imports and leaves a re-export
+shim at the old path so callers keep resolving. If a move would change
+behavior, do not make it.
+
+## The Contract (non-negotiable)
+
+1. **Tests first.** Run the project's tests before touching anything. Record
+   green or red. If there is no test suite, say so and ask before proceeding.
+2. **One move at a time.** Apply one structural edit, one split or one
+   relocation, re-run the tests, then commit or revert. On the first failure
+   you did not cause, stop and revert.
+3. **Public surface frozen.** Exported names, function signatures, types, and
+   module paths stay identical. Every moved module leaves a re-export shim at
+   its old path so existing imports keep resolving.
+4. **No dynamic guesses.** Never move or split code that may be reached by
+   reflection, string dispatch, `eval`, dependency injection, or `__all__`-gated
+   exports. When unsure, keep it and flag it for the human.
+5. **Every move gets a diff and a one-line reason.** Group moves into a
+   reviewable plan; nothing lands silently.
+
+## How it works
+
+Assess, propose, execute. Survey the structure, design a target layout, then
+apply one move at a time with verification.
+
+- **Assess.** Run `scripts/survey_structure.py --json`. Build a map of
+  oversized files, wide directories, and nesting depth.
+- **Propose.** State the target layout before touching code: which files split
+  into which new modules, which files move to which directories. Rank by safety.
+- **Execute.** Apply one move, rewrite imports, add the re-export shim, run the
+  tests, commit or revert, repeat.
+
+## Operations
+
+### Split oversized files or classes
+
+When a file or class is too large, extract cohesive units into new modules. The
+old path re-exports the moved names so callers and imports do not change. Run
+the tests after every move.
+
+### Regroup directories
+
+Move files into a layout grouped by feature or responsibility. Rewrite every
+import to the new path, and leave a re-export shim at each old path so existing
+imports keep resolving. Prefer few, well-named directories over deep nesting.
+Run the tests after every move.
+
+## Red flags, STOP
+
+You are about to violate the contract if any of these is true. Stop, do not
+proceed.
+
+- A move would change an import path and you left no re-export shim at the old
+  path. **Stop, add the shim.**
+- You would rename an exported name or signature to make a split fit. **Stop,
+  replan around a re-export.**
+- The thing has no static references, but the codebase uses reflection, DI, or
+  string dispatch. **Keep it, flag it.**
+- Tests are red before you started and you moved on anyway. **Stop, report.**
+- You are about to skip the post-move test run. **Stop, run it.**
+
+## Verification
+
+Done means: tests green before and after, `git diff` scoped to internal moves,
+re-export shims, and import rewrites only, public names and import paths
+unchanged, and a one-line behavior-identical summary per move. Run the type
+checker or linter if the project has one.
+
+## Tools
+
+- `references/cleanup-safety.md` - dynamic-reference and public-API detection
+  per language, test and rollback patterns.
+- `scripts/survey_structure.py` - directory tree shape and oversized-file
+  report to inform layout proposals.
+
+## Boundaries
+
+Out of scope. Route these elsewhere:
+
+- New features and bug fixes. Behavior must change, the manager does not.
+- In-place dead-code removal or deduplication. Use the cleaner skill.
+- Performance work.
+- Over-engineering review (ponytail's lane).
+- Formatting and style. Use the project's linter or formatter.
