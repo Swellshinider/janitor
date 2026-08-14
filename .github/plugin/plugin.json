@@ -1,6 +1,6 @@
 {
   "name": "janitor",
-  "description": "Behavior-preserving codebase care: cleaner (dead-code removal, file splitting, deduplication) and manager (structural file and directory refactor) without public API changes.",
+  "description": "Behavior-preserving codebase care: cleaner removes dead code and deduplicates; manager restructures files and directories; docs-cleaner audits documentation and open-source readiness without changing code behavior.",
   "version": "0.1.0",
   "author": {
     "name": "Swellshinider",
@@ -9,6 +9,6 @@
   "homepage": "https://github.com/Swellshinider/janitor",
   "repository": "https://github.com/Swellshinider/janitor",
   "license": "MIT",
-  "keywords": ["cleanup", "refactor", "dead-code", "deduplication", "reorganize", "structure", "code-quality"],
+  "keywords": ["cleanup", "documentation", "refactor", "dead-code", "deduplication", "reorganize", "structure", "open-source", "code-quality"],
   "skills": "skills/"
 }

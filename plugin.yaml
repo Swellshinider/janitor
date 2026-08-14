@@ -1,7 +1,8 @@
 name: janitor
 version: 0.1.0
-description: Behavior-preserving codebase care for AI agents. Cleaner removes dead code, splits oversized files, and deduplicates; manager restructures files and directories.
+description: Behavior-preserving codebase care for AI agents. Cleaner removes dead code, splits oversized files, and deduplicates; manager restructures files and directories; docs-cleaner audits and improves documentation and open-source readiness.
 author: Swellshinider
 provides_skills:
   - cleaner
   - manager
+  - docs-cleaner
