@@ -41,6 +41,10 @@ OPENCLAW_DESCRIPTIONS = {
         "Behavior-preserving cleanup: dead code removal, file splitting, and "
         "deduplication without public API changes."
     ),
+    "docs-cleaner": (
+        "Documentation audit and cleanup for README, community files, and "
+        "links without changing code behavior."
+    ),
     "manager": (
         "Behavior-preserving structural refactor: split oversized files and "
         "regroup directories, with re-exports keeping the public surface stable."

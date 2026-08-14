@@ -1,7 +1,7 @@
 {
   "name": "janitor",
   "version": "0.1.0",
-  "description": "Behavior-preserving codebase care: cleaner (dead-code removal, file splitting, deduplication) and manager (structural file and directory refactor) without public API changes.",
+  "description": "Behavior-preserving codebase care: cleaner removes dead code and deduplicates, manager restructures files and directories, and docs-cleaner audits documentation and open-source readiness without changing code behavior.",
   "author": {
     "name": "Swellshinider",
     "url": "https://github.com/Swellshinider"
@@ -9,12 +9,12 @@
   "homepage": "https://github.com/Swellshinider/janitor",
   "repository": "https://github.com/Swellshinider/janitor",
   "license": "MIT",
-  "keywords": ["cleanup", "refactor", "dead-code", "deduplication", "reorganize", "structure", "code-quality"],
+  "keywords": ["cleanup", "documentation", "refactor", "dead-code", "deduplication", "reorganize", "structure", "open-source", "code-quality"],
   "skills": "./skills/",
   "interface": {
     "displayName": "Janitor",
     "shortDescription": "Behavior-preserving codebase care",
-    "longDescription": "Cleaner removes dead code, splits oversized files, and merges duplicates; manager restructures files and directories, all while keeping behavior and public APIs stable.",
+    "longDescription": "Cleaner removes dead code, splits oversized files, and merges duplicates; manager restructures files and directories; docs-cleaner audits and improves documentation and open-source readiness, all without changing code behavior.",
     "developerName": "Swellshinider",
     "category": "Productivity",
     "capabilities": ["Skills"],
@@ -23,7 +23,8 @@
       "Use Janitor to clean up this codebase without changing behavior.",
       "Find dead code, duplicate logic, and oversized files.",
       "Refactor this code while keeping the public API stable.",
-      "Restructure oversized files and regroup directories without changing behavior."
+      "Restructure oversized files and regroup directories without changing behavior.",
+      "Audit and improve this project's documentation and open-source readiness."
     ]
   }
 }

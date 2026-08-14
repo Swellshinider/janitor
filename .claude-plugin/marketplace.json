@@ -4,18 +4,18 @@
     "name": "Swellshinider",
     "url": "https://github.com/Swellshinider"
   },
-  "description": "Janitor is a behavior-preserving codebase care package for Claude Code with two skills: cleaner removes dead code, splits oversized files and classes, and merges duplicated logic; manager restructures files and directories into a cleaner layout. Tests stay green and the public API stays frozen.",
+  "description": "Janitor is a behavior-preserving codebase care package for Claude Code with three skills: cleaner removes dead code and duplicated logic; manager restructures files and directories; docs-cleaner audits documentation and open-source readiness.",
   "homepage": "https://github.com/Swellshinider/janitor",
   "repository": "https://github.com/Swellshinider/janitor",
   "metadata": {
-    "description": "Behavior-preserving codebase care: cleaner (dead-code removal, file splitting, deduplication) and manager (structural file and directory refactor). No behavior changes.",
+    "description": "Behavior-preserving codebase care: cleaner removes dead code and duplicates; manager restructures files and directories; docs-cleaner audits documentation and open-source readiness. No code behavior changes.",
     "version": "0.1.0"
   },
   "plugins": [
     {
       "name": "janitor",
       "source": ".",
-      "description": "Behavior-preserving codebase care: cleaner removes dead code, splits oversized files and classes, and merges duplicated logic; manager restructures files and directories. Tests stay green, public API frozen.",
+      "description": "Behavior-preserving codebase care: cleaner removes dead code and duplicated logic; manager restructures files and directories; docs-cleaner audits documentation and open-source readiness. Tests stay green, public API frozen.",
       "version": "0.1.0",
       "author": {
         "name": "Swellshinider",
@@ -30,6 +30,8 @@
         "reorganize",
         "structure",
         "code-quality",
+        "documentation",
+        "open-source",
         "skill"
       ],
       "category": "engineering"

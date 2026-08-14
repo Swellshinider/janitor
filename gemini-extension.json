@@ -1,6 +1,6 @@
 {
   "name": "janitor",
   "version": "0.1.0",
-  "description": "Behavior-preserving codebase care: cleaner (dead-code removal, file splitting, deduplication) and manager (structural file and directory refactor) without public API changes.",
+  "description": "Behavior-preserving codebase care: cleaner removes dead code and deduplicates, manager restructures files and directories, and docs-cleaner audits documentation and open-source readiness without changing code behavior.",
   "contextFileName": "integrations/gemini/AGENTS.md"
 }

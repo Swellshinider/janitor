@@ -26,6 +26,13 @@ def assert_same_dir(left, right):
 
 
 def main():
+    source_skills = {
+        name
+        for name in os.listdir(os.path.join(ROOT, "skills"))
+        if os.path.isdir(os.path.join(ROOT, "skills", name))
+    }
+    assert source_skills == {"cleaner", "docs-cleaner", "manager"}
+
     tmp = tempfile.mkdtemp(prefix="janitor-integrations-")
     try:
         subprocess.check_call(
