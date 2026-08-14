@@ -16,7 +16,7 @@
 - **manager** - the structural work the cleaner refuses: split oversized files
   into cohesive modules and regroup directories into a layout grouped by
   feature or responsibility.
-- **docs-cleaner** - audit and improve `README` files, guides, changelogs, and
+- **docs-cleaner** - audit and improve `README` files, guides, and
   open-source community documentation while removing broken or redundant
   material conservatively.
 
@@ -46,7 +46,7 @@ the public surface is frozen.
 ### docs-cleaner
 
 - Documentation inventory and broken local-link checks.
-- README, changelog, contribution, security, conduct, and support guidance.
+- README, contribution, security, conduct, and support guidance.
 - GitHub issue and pull-request templates.
 - Conservative consolidation of stale or redundant documentation.
 

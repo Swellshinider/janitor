@@ -11,8 +11,6 @@ against the repository before proposing edits.
   help.
 - A `LICENSE` or equivalent legal notice exists and matches the repository
   metadata.
-- A changelog or release-history document records meaningful user-facing
-  changes without rewriting historical entries.
 - Examples and commands in the README still exist and can be run or verified.
 - Links resolve locally, headings are discoverable, and each topic has one
   canonical explanation.
@@ -40,7 +38,8 @@ state the limitation plainly.
 
 ## Safe consolidation and removal
 
-- Preserve `LICENSE`, security policy, conduct policy, and changelog history
+- Preserve `LICENSE`, security policy, conduct policy, and historical release
+  information
   unless the owner explicitly directs otherwise.
 - Before deleting a file, search the whole repository for its path, title,
   headings, and distinctive commands.

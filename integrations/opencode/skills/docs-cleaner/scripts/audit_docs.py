@@ -26,12 +26,6 @@ SKIP_DIRECTORIES = {
 STANDARD_FILES = {
     "readme": ("README", "README.md", "README.rst"),
     "license": ("LICENSE", "LICENSE.md", "LICENSE.txt", "COPYING"),
-    "changelog": (
-        "CHANGELOG.md",
-        "HISTORY.md",
-        "docs/CHANGELOG.md",
-        "docs/HISTORY.md",
-    ),
     "contributing": ("CONTRIBUTING.md", ".github/CONTRIBUTING.md"),
     "code_of_conduct": ("CODE_OF_CONDUCT.md", ".github/CODE_OF_CONDUCT.md"),
     "security": ("SECURITY.md", ".github/SECURITY.md"),

@@ -33,7 +33,8 @@ Do not edit files under `integrations/` by hand; they are generated from
 
 1. Explain the user-facing problem and the smallest useful solution.
 2. Include tests or a clear validation note.
-3. Update the README or changelog when the public skill set or behavior changes.
+3. Update the README or relevant user-facing documentation when the public skill
+   set or behavior changes.
 4. Confirm generated integrations are synchronized.
 
 Open a pull request against the default branch with a concise title and enough

@@ -21,7 +21,7 @@ application behavior or invent project facts.
    request, apply the selected baseline directly.
 5. Remove a document only when it is obsolete, duplicated, or replaced; update
    every reference and preserve the useful information first.
-6. Keep legal notices, security instructions, historical changelog entries,
+6. Keep legal notices, security instructions, and historical release information,
    and platform-required files unless the owner explicitly approves removal.
 7. Apply one logical documentation change at a time, then rerun the relevant
    checks. Stop on the first unexplained failure.
@@ -32,7 +32,7 @@ application behavior or invent project facts.
 
 - Run `scripts/audit_docs.py --json PROJECT_ROOT` to inventory documentation,
   check standard files, inspect README headings, and find broken local links.
-- Read the README, license, changelog, and contributor-facing files in full.
+- Read the README, license, and contributor-facing files in full.
 - Search the repository for documentation paths, commands, install instructions,
   feature names, URLs, and claims that may be stale.
 - Identify canonical sources and generated copies. Do not treat generated

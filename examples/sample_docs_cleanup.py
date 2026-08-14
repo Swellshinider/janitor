@@ -24,7 +24,6 @@ def main():
     with tempfile.TemporaryDirectory(prefix="janitor_docs_fixture_") as root:
         write(root, ("README.md", "# Example\n\n[Guide](docs/guide.md)\n[Missing](docs/missing.md)\n"))
         write(root, ("docs/guide.md", "# Guide\n"))
-        write(root, ("docs/CHANGELOG.md", "# Changelog\n"))
         write(root, ("LICENSE", "license\n"))
 
         report = audit_docs.audit(root)
